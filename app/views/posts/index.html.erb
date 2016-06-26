@@ -1,0 +1,58 @@
+<h1 id="color-letra">ADMINISTRATIVO</h1>
+
+<html>
+<head>
+  <title></title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div style="width:80%;margin-left:200px ;">
+      <form id="margin-buscar">
+       <input name="q" <%= @q %> >
+       <button type="submit" class="btn be-blue white">Buscar</button>
+      </form>
+
+      
+
+
+      <table id="customers">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Category</th>
+            <th colspan="3" >Edicion</th>
+            <th>fecha</th>
+          </tr>
+        </thead>
+
+        <div id="admin">
+        <tbody >
+          <% @posts.each do |post| %>
+            <tr class="alt">
+              <td><%= post.title %></td>
+              <td><%= post.category %></td>
+              <td><%= link_to 'Ver', post %></td>
+              <td><%= link_to 'Editar', edit_post_path(post) %></td>
+              <td><%= link_to 'Eliminar', post, method: :delete, data: { confirm: 'Esta usted seguro?' } %></td>
+              
+              <td><% fecha_c = post.created_at.to_s%>
+                  <% fecha_c = fecha_c.split(' ').first %>
+                  <%= fecha_c%>
+              </td>
+            </tr>
+          <%end%>
+        </tbody>
+        </div>
+        
+      </table>
+      <!-- class:"btn be-blue white"-->
+      <%= link_to 'Nuevo Post', new_post_path%>
+  </div>
+</body>
+</html>
+
+
+

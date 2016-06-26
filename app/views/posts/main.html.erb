@@ -1,0 +1,24 @@
+
+
+  <div style="width:80%;margin:0 auto;">
+    <% @posts.each do |post| %>
+          
+            <td width="30%">
+              <strong><h2><a href="/posts/<%= post.id%>"><%= post.title %></a></h2></strong>
+              <%= post.content %>
+              <p>
+
+              <a href="/posts/like/<%= post.id %>">Like:</a>
+                <%= post.like%>
+              </p>
+            <p>  
+            <strong>Fecha:</strong>
+            <% fecha_c = post.created_at.to_s%>
+            <% fecha_c = fecha_c.split(' ').first %>
+            <%= fecha_c%>
+            </p>  
+            <br>
+    <% end %>
+
+  </div>
+

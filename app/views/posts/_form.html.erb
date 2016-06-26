@@ -1,0 +1,31 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div style="width:80%;margin:0 auto;">
+  <div class="field">
+    <%= f.text_field :category , placeholder: "Category", class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :title , placeholder: "Titulo", class:"form-control" %>
+  </div>
+  <div class="field">
+    
+    <%= f.text_area :content , placeholder: "Escribe el Articulo", style: "height:250px", class:"form-control"%>
+  </div>
+  
+  
+  <div class="actions">
+    <%= f.submit "Guardar", class:"btn be-blue white"%>
+  </div>
+<% end %>
+</div>

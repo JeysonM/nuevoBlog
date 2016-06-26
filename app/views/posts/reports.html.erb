@@ -1,0 +1,49 @@
+
+
+<html>
+<head>
+  <title></title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div style="width:80%;margin-left:200px ;">
+<table id="customers">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>usuario</th>
+      <th>Category</th>
+      <th>Titulo</th>
+      <th>Fecha Creacion</th>
+      <th>Fecha Modificacion</th>
+      <th>Cantidad Comnetarios</th>
+      <th>Cantidad likes</th>
+      <th>Cantidad Palabras</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr class="alt">
+        <td><%= post.id %></td>
+        <td></td>
+        <td><%= post.category %></td>
+        <td><%= post.title %></td>
+        <td><%= post.created_at %></td>
+        <td><%= post.updated_at %></td>
+        <td><%= post.coments.length %></td>
+        <td><%= post.like %></td>
+        <td><%= post.content.downcase.split(/\W+/).length %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+</div>
+</body>
+</html>

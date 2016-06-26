@@ -1,0 +1,61 @@
+
+<body>
+
+	<div id="admin" >
+		<p id="notice"><%= notice %></p>
+
+		  <h1 id="color-letra"><%= @post.title %></h1>
+		  <strong>Categoria:</strong>
+		  <h1><%= @post.category %></h1>
+
+		<div>
+			<%= @post.content %>
+		</div>
+
+
+		<!--esta es la parte donde esta el boton like-->
+		<p>
+		<a href="/posts/like/<%= @post.id %>">Like:</a>
+			<%= @post.like%>
+		</p>
+		<!--==================================================-->
+
+
+		<%= link_to 'Editar', edit_post_path(@post) %>
+
+		<p>
+			<strong>fecha de modificacion:</strong>
+			<% fecha_m = @post.updated_at.to_s%>
+			<% fecha_m = fecha_m.split(' ').first %>
+			<%= fecha_m%>
+		</p>
+
+		<div style="width:50%;margin:0;">
+		<form action="/coments" method="post">
+			<input type="hidden" name="coment[post_id]" value="<%= @post.id%>">
+			<!--placeholder: "Escribe el Articulo", style: "height:250px",-->
+			<input type="text" name="coment[description]" placeholder="Escriba su Comentario" style="height:50px" 
+			class="form-control">
+			<input type="submit" class="btn be-blue white">
+		</form>
+		</div>
+
+		<table>
+			<%@post.coments.each do |com|%>
+			    <br>
+			    <tr>
+				    <td><%= com.description %>
+				    
+					    <p>
+							<strong>Fecha:</strong>
+							<% fecha_m = com.updated_at.to_s%>
+							<% fecha_m = fecha_m.split(' ').first %>
+							<%= fecha_m%>
+						</p>
+					</td>
+				</tr>
+			<%end%>
+			<br>
+		</table>
+	</div>
+</body>
